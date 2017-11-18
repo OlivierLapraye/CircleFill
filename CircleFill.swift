@@ -1,7 +1,9 @@
+import UIKit
+
 extension UIView: CAAnimationDelegate {
     
     /* FILL BACKGROUND */
-    func fillBackgroundFrom(point: CGPoint, with color: UIColor) {
+    func fillBackgroundFrom(point: CGPoint, with color: UIColor, in time: CFTimeInterval = 1.0) {
         let layer = CALayer()
         layer.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         layer.position = point
@@ -13,7 +15,7 @@ extension UIView: CAAnimationDelegate {
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.fromValue = 1.0
         animation.toValue = 70.0
-        animation.duration = 1.0
+        animation.duration = time
         animation.fillMode = kCAFillModeForwards
         animation.isRemovedOnCompletion = false
         layer.add(animation, forKey: "fillAnimation")
@@ -26,7 +28,7 @@ extension UIView: CAAnimationDelegate {
     }
     
     /* EMPTY BACKGROUND */
-    func emptyBackgroundTo(point: CGPoint, with color: UIColor) {
+    func emptyBackgroundTo(point: CGPoint, with color: UIColor, in time: CFTimeInterval = 1.0) {
         guard let subLayers = self.layer.sublayers else {
             return
         }
@@ -37,7 +39,7 @@ extension UIView: CAAnimationDelegate {
                 let animation = CABasicAnimation(keyPath: "transform.scale")
                 animation.fromValue = 70.0
                 animation.toValue = 1.0
-                animation.duration = 1.0
+                animation.duration = time
                 animation.delegate = self
                 subLayer.add(animation, forKey: "fillAnimation")
             }
