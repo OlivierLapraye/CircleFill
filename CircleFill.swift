@@ -33,11 +33,14 @@ extension UIView: CAAnimationDelegate {
             return
         }
         
-        // TODO: REMOVE THE HARDCODED "70"
         for subLayer in subLayers {
             if subLayer.name == "color" {
+                guard let presentationLayer = subLayer.presentation(),
+                let value = presentationLayer.value(forKeyPath: "transform.scale") else {
+                    return
+                }
                 let animation = CABasicAnimation(keyPath: "transform.scale")
-                animation.fromValue = 70.0
+                animation.fromValue = value
                 animation.toValue = 1.0
                 animation.duration = time
                 animation.delegate = self
