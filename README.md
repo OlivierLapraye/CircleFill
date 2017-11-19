@@ -10,15 +10,15 @@ Here's how to use it
 
 ### Fill the view
 ```
+// Choose one of the following prototype:
 view.fillBackgroundFrom(point: aSubView.center, with: UIColor.green)
-// OR
 view.fillBackgroundFrom(point: anotherView.origin, with: UIColor.blue, in: 2.0)
 ```
 
 ### Empty the view
 ```
+// Choose one of the following prototype:
 view.emptyBackgroundTo(point: view.center)
-// OR
 view.emptyBackgroundTo(point: view.center, in: 0.5)
 ```
 
