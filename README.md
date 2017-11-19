@@ -2,10 +2,30 @@
 Animation which circularly fills a UIView starting from a given point 
 
 ## Installation
-Coming soon
+For now, all the code is in one file, `CircleFill.swift`. You can just copy this file in your project to make it work
 
 ## Usage
-Coming soon
+CircleFill is a UIView extension. It works (supposedly) on all kind of UIView.
+Here's how to use it
+
+### Fill the view
+```
+view.fillBackgroundFrom(point: aSubView.center, with: UIColor.green)
+// OR
+view.fillBackgroundFrom(point: anotherView.origin, with: UIColor.blue, in: 2.0)
+```
+
+### Empty the view
+```
+view.emptyBackgroundTo(point: view.center)
+// OR
+view.emptyBackgroundTo(point: view.center, in: 0.5)
+```
+
+## Parameters
+`point : CGPoint` -> The point of the view where the animation begins / ends.<br />
+`with color: UIColor` -> The color used to fill the view. Only available for `fillBackgroundFrom`.<br />
+`in time: CFTimeInterval` -> The duration of the animation. Default is `1.0`.<br />
 
 ## Examples
 Coming soon
