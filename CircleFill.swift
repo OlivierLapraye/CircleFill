@@ -2,24 +2,42 @@ import UIKit
 
 extension UIView: CAAnimationDelegate {
     
+    private func getDiagonal() -> CGFloat {
+        let origin = self.frame.origin
+        let opposite = CGPoint(x: origin.x + self.frame.width,
+                               y: origin.y + self.frame.height)
+        
+        let distanceX = origin.x - opposite.x
+        let distanceY = origin.y - opposite.y
+        let diagonal = sqrt(pow(distanceX, 2) + pow(distanceY, 2))
+        return diagonal
+    }
+    
     /* FILL BACKGROUND */
     func fillBackgroundFrom(point: CGPoint, with color: UIColor, in time: CFTimeInterval = 1.0) {
+        let initialDiameter: CGFloat = 10.0
+        let diagonal = getDiagonal()
+        let fullViewValue = (diagonal / initialDiameter) + 2
+        
+        // Create layer
         let layer = CALayer()
-        layer.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+        layer.frame = CGRect(x: 0, y: 0, width: initialDiameter,
+                             height: initialDiameter)
         layer.position = point
-        layer.cornerRadius = 5
+        layer.cornerRadius = initialDiameter / 2
         layer.backgroundColor = color.cgColor
         layer.name = "color"
         
-        // TODO: REMOVE THE HARDCODED "70"
+        // Create animation
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.fromValue = 1.0
-        animation.toValue = 70.0
+        animation.toValue = fullViewValue
         animation.duration = time
         animation.fillMode = kCAFillModeForwards
         animation.isRemovedOnCompletion = false
-        layer.add(animation, forKey: "fillAnimation")
         
+        // Add animation to layer and layer to view
+        layer.add(animation, forKey: "fillAnimation")
         guard let firstSubView = self.subviews.first else {
             return
         }
