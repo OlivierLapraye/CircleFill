@@ -35,6 +35,8 @@ extension UIView: CAAnimationDelegate {
         animation.duration = time
         animation.fillMode = kCAFillModeForwards
         animation.isRemovedOnCompletion = false
+        animation.delegate = self
+        animation.setValue("fill", forKey: "name")
         
         // Add animation to layer and layer to view
         layer.add(animation, forKey: "fillAnimation")
@@ -62,19 +64,29 @@ extension UIView: CAAnimationDelegate {
                 animation.toValue = 1.0
                 animation.duration = time
                 animation.delegate = self
+                animation.setValue("empty", forKey: "name")
                 subLayer.add(animation, forKey: "fillAnimation")
             }
         }
     }
     
-    // TODO: DO NOT HARDCODE THIS CALLBACK FOR THE EMPTY ACTION ONLY
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard let subLayers = self.layer.sublayers else {
+        guard let name = anim.value(forKey: "name") as? String else {
             return
         }
-        for subLayer in subLayers {
-            if subLayer.name == "color" {
-                subLayer.removeFromSuperlayer()
+        if name == "fill" {
+            // DELEGATE METHOD HERE... BUT IT'S A EXTENSION, CAN'T HAVE STORED PROPERTIES
+        }
+        else {
+            // DELEGATE METHOD HERE AGAIN
+            print("empty is done")
+            guard let subLayers = self.layer.sublayers else {
+                return
+            }
+            for subLayer in subLayers {
+                if subLayer.name == "color" {
+                    subLayer.removeFromSuperlayer()
+                }
             }
         }
     }
