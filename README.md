@@ -12,7 +12,7 @@ Here's how to use it
 ```
 // Choose one of the following prototype:
 view.fillBackgroundFrom(point: aSubView.center, with: UIColor.green)
-view.fillBackgroundFrom(point: anotherView.origin, with: UIColor.blue, in: 2.0)
+view.fillBackgroundFrom(point: anotherView.frame.origin, with: UIColor.blue, in: 2.0)
 ```
 
 ### Empty the view
