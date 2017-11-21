@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class Example1: UIViewController {
     
     @IBOutlet weak var colorSwitch: UISwitch!
     
@@ -19,12 +19,6 @@ class ViewController: UIViewController {
         else {
             view.emptyBackgroundTo(point: colorSwitch.center, with: UIColor.white, in: 0.5)
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // DO SOMETHING HERE
     }
 }
 

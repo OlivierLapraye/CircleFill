@@ -17,7 +17,7 @@ extension UIView: CAAnimationDelegate {
     func fillBackgroundFrom(point: CGPoint, with color: UIColor, in time: CFTimeInterval = 1.0) {
         let initialDiameter: CGFloat = 10.0
         let diagonal = getDiagonal()
-        let fullViewValue = (diagonal / initialDiameter) + 2
+        let fullViewValue = (diagonal / initialDiameter) * 2
         
         // Create layer
         let layer = CALayer()
