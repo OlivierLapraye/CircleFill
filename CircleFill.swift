@@ -40,10 +40,7 @@ extension UIView: CAAnimationDelegate {
         
         // Add animation to layer and layer to view
         layer.add(animation, forKey: "fillAnimation")
-        guard let firstSubView = self.subviews.first else {
-            return
-        }
-        self.layer.insertSublayer(layer, below: firstSubView.layer)
+        self.layer.insertSublayer(layer, at: 0)
         self.layer.masksToBounds = true
     }
     
